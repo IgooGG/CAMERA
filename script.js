@@ -1,3 +1,40 @@
+// Credits Modal Functionality
+document.getElementById('credits-btn').addEventListener('click', () => {
+    const modal = document.getElementById('credits-modal');
+    modal.classList.add('visible');
+    setTimeout(() => {
+        modal.querySelector('.modal-container').style.transform = 'scale(1)';
+    }, 10);
+});
+
+document.getElementById('close-credits').addEventListener('click', () => {
+    const modal = document.getElementById('credits-modal');
+    modal.querySelector('.modal-container').style.transform = 'scale(0)';
+    setTimeout(() => {
+        modal.classList.remove('visible');
+    }, 300);
+});
+
+document.getElementById('credits-modal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) {
+        const modal = document.getElementById('credits-modal');
+        modal.querySelector('.modal-container').style.transform = 'scale(0)';
+        setTimeout(() => {
+            modal.classList.remove('visible');
+        }, 300);
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.getElementById('credits-modal').classList.contains('visible')) {
+        const modal = document.getElementById('credits-modal');
+        modal.querySelector('.modal-container').style.transform = 'scale(0)';
+        setTimeout(() => {
+            modal.classList.remove('visible');
+        }, 300);
+    }
+});
+
 // DOM Elements
 const video = document.getElementById('camera-stream');
 const select = document.getElementById('camera-select');
