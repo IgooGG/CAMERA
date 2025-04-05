@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Viewer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold text-center mb-6">Camera Viewer</h1>
+        
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="flex-1">
+                    <div class="bg-gray-200 rounded-lg overflow-hidden aspect-video relative" id="video-container">
+                        <video id="camera-stream" class="w-full h-full object-cover" autoplay playsinline></video>
+                        <div id="placeholder" class="absolute inset-0 flex items-center justify-center bg-gray-100">
+                            <div class="text-center">
+                                <i class="fas fa-camera text-6xl text-gray-400 mb-4"></i>
+                                <p class="text-gray-500">No camera selected</p>
+                            </div>
+                        </div>
+                        <div id="loading" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+                            <i class="fas fa-circle-notch text-white text-4xl loading-spinner"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <div class="flex gap-2 mb-4">
+                            <select id="camera-select" class="flex-1 bg-white p-2 rounded border border-gray-300">
+                                <option value="">Select Camera</option>
+                            </select>
+                            <button id="refresh-btn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="fullscreen-btn" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">
+                                <i class="fas fa-expand"></i> Fullscreen
+                            </button>
+                            <button id="capture-btn" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700" disabled>
+                                <i class="fas fa-camera"></i> Capture
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex-1">
+                    <h2 class="text-xl font-semibold mb-4">Captured Images</h2>
+                    <div id="gallery" class="grid grid-cols-2 gap-2">
+                        <!-- Captured images will appear here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error message container -->
+        <div id="error-msg" class="mt-4 p-3 bg-red-100 text-red-700 rounded hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
